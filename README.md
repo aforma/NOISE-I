@@ -1,4 +1,4 @@
-## DRAFT
+## Aquarela
 
 Boilerplate for generative artwork
 

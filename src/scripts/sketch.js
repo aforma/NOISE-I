@@ -1,11 +1,11 @@
-export default function(p){
+var loop = require('raf-loop');
 
-  p.setup = function() {
-    p.pixelDensity(window.devicePixelRatio);
-    p.createCanvas(window.innerWidth, window.innerHeight);
-  }
+module.exports = function(ctx){
+  var engine = loop(function(dt) {
+    
+  }).start()
 
-  p.draw = function() {
-
-  }
+  setTimeout(function(){
+    engine.stop();
+  }, 5000)
 }

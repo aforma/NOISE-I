@@ -9,5 +9,5 @@ Boilerplate for generative artwork
 
 Run `npm start` to start the server.
 
-Run `npm run print' to asve the artwork.
+Run `npm run print` to asve the artwork.
 

@@ -1,4 +1,4 @@
-import sketch from "./sketch";
+var sketch = require("./sketch")
 
 var canvas = document.createElement("canvas");
 var context = canvas.getContext('2d');
@@ -11,7 +11,7 @@ window.addEventListener("resize", resize);
 
 function resize(){
   canvas.width = window.innerWidth;
-  canvas.height = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
 
 sketch(context);

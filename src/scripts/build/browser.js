@@ -11,6 +11,6 @@ sketch.setup(ctx, browserEnv);
 
 function onKeyPress(e){
   if(e.keyCode === 83 || e.keyCode === 115) {
-    env.save();
+    browserEnv.save();
   }
 }

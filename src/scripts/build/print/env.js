@@ -38,14 +38,14 @@ module.exports = function(engine){
   }
   
   function updateReadme(){
-    var filename = path.resolve(__dirname, '..', '..', '..', '..', 'README.md');
-    fs.readFile(filename, 'utf8', function (err,data) {
+    var readmeFile = path.resolve(__dirname, '..', '..', '..', '..', 'README.md');
+    fs.readFile(readmeFile, 'utf8', function (err,data) {
       if (err) {
         return console.log(err);
       }
-      var result = data.replace(/:NAME:/g, config.name);
-      result = result.replace(/:FILEPATH:/g, "print/"+filename)
-      fs.writeFile(filename, result, 'utf8', function (err) {
+      var result = data.replace(/### ([a-z]*)/g, "### " + config.name);
+      result = result.replace(/artwork](.*)/g, "artwork](print/"+filename+")")
+      fs.writeFile(readmeFile, result, 'utf8', function (err) {
          if (err) return console.log(err);
       });
     });

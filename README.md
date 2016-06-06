@@ -1,6 +1,6 @@
-### artwork
+###artwork
 
-![artwork](print/artwork_20160605222329.jpg)
+![artwork](print/artwork_20160605225327.jpg)
 
-built with [Aquarela](aquarela.md)
+> built with [Aquarela](aquarela.md)
 

@@ -20,7 +20,7 @@ module.exports = function(engine) {
     a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(event.target);
+    document.body.removeChild(a);
   }
 
   env.createContext = function(){

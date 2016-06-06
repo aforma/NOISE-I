@@ -10,9 +10,10 @@ module.exports = function(engine){
   var canvas = undefined;
   var context = undefined;
   var artworkPath = undefined;
+  var filename = undefined;
 
   env.save = function(){
-    var filename = config.name + "_" + moment().format("YYYYMMDDHHmmss") + ".jpg";
+    filename = config.name + "_" + moment().format("YYYYMMDDHHmmss") + ".jpg";
     artworkPath = path.resolve(__dirname, '..', '..', '..', '..', 'print') + '/'+filename
     var out = fs.createWriteStream(artworkPath);
     var stream = canvas.jpegStream({quality: 100});
@@ -43,7 +44,7 @@ module.exports = function(engine){
         return console.log(err);
       }
       var result = data.replace(/:NAME:/g, config.name);
-      result = result.replace(/:FILEPATH:/g, artworkPath)
+      result = result.replace(/:FILEPATH:/g, "print/"+filename)
       fs.writeFile(filename, result, 'utf8', function (err) {
          if (err) return console.log(err);
       });

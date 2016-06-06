@@ -2,8 +2,7 @@ var perlin = require("./sketch/noise");
 var _ = require("lodash");
 
 var ctx = undefined;
-var done = undefined;
-
+var env = undefined;
 var frameCount = 0;
 var pointA = {x:0,y:0};
 var pointB = {x:0,y:0};
@@ -21,10 +20,9 @@ var angleSpeed = 0.01;
 var delay = 60000 * 0.5;
 
 
-exports.setup = function(_ctx, _done, print){
+exports.setup = function(_ctx, _env){
   ctx = _ctx;
-  done = _done;
-
+  env = _env;
   size = 0;
   radius.x = Math.random() * size;  
   radius.y = Math.random() * size;
@@ -51,7 +49,7 @@ exports.draw = function() {
   updatePoints();
 
   if(size >= ctx.canvas.width * 0.7) {
-    done()
+    env.done()
   }
 }
 
@@ -59,7 +57,6 @@ function drawLines() {
   ctx.strokeStyle = "#000";
   ctx.lineWidth = lineWidth;
 
-  // ctx.globalCompositeOperation = 'darken';
   ctx.beginPath()
   ctx.moveTo(pointA.x, pointA.y)
   ctx.lineTo(pointD.x, pointD.y)
@@ -67,7 +64,6 @@ function drawLines() {
   ctx.lineTo(pointC.x, pointC.y)
   ctx.stroke()
   ctx.closePath()
-  // ctx.globalCompositeOperation = 'source-over';
 }
 
 function updatePoints() {

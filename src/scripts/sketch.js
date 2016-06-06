@@ -28,6 +28,8 @@ exports.setup = function(_ctx, _env){
   radius.y = Math.random() * size;
 
   background("#FFF");
+
+  _.delay(env.done, 10000)
 }
 
 exports.draw = function() {
@@ -48,7 +50,7 @@ exports.draw = function() {
 
   updatePoints();
 
-  if(size >= ctx.canvas.width * 0.7) {
+  if(size >= ctx.canvas.width * 0.1) {
     env.done()
   }
 }

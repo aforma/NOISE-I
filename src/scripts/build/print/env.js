@@ -9,10 +9,11 @@ module.exports = function(engine){
   var env = {};
   var canvas = undefined;
   var context = undefined;
+  var artworkPath = undefined;
 
   env.save = function(){
     var filename = config.name + "_" + moment().format("YYYYMMDDHHmmss") + ".jpg";
-    var artworkPath = path.resolve(__dirname, '..', '..', '..', '..', 'print') + '/'+filename
+    artworkPath = path.resolve(__dirname, '..', '..', '..', '..', 'print') + '/'+filename
     var out = fs.createWriteStream(artworkPath);
     var stream = canvas.jpegStream({quality: 100});
 
@@ -23,15 +24,30 @@ module.exports = function(engine){
     console.log("– Artwork saved at ".green + artworkPath.toString().green)
   }
 
-  env.one = function() {
+  env.done = function() {
     engine.stop()
     env.save()
+    updateReadme()
   }
 
   env.createContext = function(){
     canvas = new Canvas(parseInt(config.width), parseInt(config.height));
     ctx = canvas.getContext('2d');
     return ctx;
+  }
+  
+  function updateReadme(){
+    var filename = path.resolve(__dirname, '..', '..', '..', '..', 'README.md');
+    fs.readFile(filename, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+      var result = data.replace(/:NAME:/g, config.name);
+      result = result.replace(/:FILEPATH:/g, artworkPath)
+      fs.writeFile(filename, result, 'utf8', function (err) {
+         if (err) return console.log(err);
+      });
+    });
   }
 
   return env;

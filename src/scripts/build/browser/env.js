@@ -10,13 +10,15 @@ module.exports = function(engine) {
 
   env.done = function(){
     engine.stop();
+    env.save()
   }
 
   env.save = function(){
     var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     var a = document.createElement('a');
     a.href = image;
-    a.download = config.name + ".png";
+    var name = config.name + ".png";
+    a.download = name.replace(" ","_");
     a.style.display = 'none';
     document.body.appendChild(a);
     a.click();

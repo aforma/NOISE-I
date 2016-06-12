@@ -4,6 +4,7 @@ var config = require("../../../../config.json");
 var moment = require("moment");
 var colors = require('colors');
 var Canvas = require('canvas');
+var crop = require("./crop");
 
 module.exports = function(engine){
   var env = {};
@@ -15,6 +16,7 @@ module.exports = function(engine){
   env.save = function(){
     filename = config.name + "_" + moment().format("YYYYMMDDHHmmss") + ".jpg";
     artworkPath = path.resolve(__dirname, '..', '..', '..', '..', 'print') + '/'+filename
+    artworkPath = artworkPath.replace(" ", "_");
     var out = fs.createWriteStream(artworkPath);
     var stream = canvas.jpegStream({quality: 100});
 
@@ -29,6 +31,9 @@ module.exports = function(engine){
     engine.stop()
     env.save()
     updateReadme()
+    setTimeout(function(){
+      crop(artworkPath.toString());
+    }, 1000)
   }
 
   env.createContext = function(){
@@ -44,7 +49,6 @@ module.exports = function(engine){
         return console.log(err);
       }
       var result = data.replace(/### ([a-z]*)/g, "### " + config.name);
-      result = result.replace(/artwork](.*)/g, "artwork](print/"+filename+")")
       fs.writeFile(readmeFile, result, 'utf8', function (err) {
          if (err) return console.log(err);
       });

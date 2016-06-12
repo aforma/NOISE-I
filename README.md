@@ -1,6 +1,6 @@
-###artwork
+### NOISE I
 
-![artwork](print/artwork_20160605225327.jpg)
+![artwork](print/thumbnail.png)
 
 > built with [Aquarela](aquarela.md)
 

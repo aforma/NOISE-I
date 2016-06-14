@@ -1,4 +1,4 @@
-### NOISE INOISE INOISE I
+### NOISE I
 
 ![artwork](print/thumbnail.png)
 

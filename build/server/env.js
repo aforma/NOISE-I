@@ -48,7 +48,7 @@ module.exports = function(engine){
       if (err) {
         return console.log(err);
       }
-      var result = data.replace(/### ([a-z]*)/g, "### " + config.name);
+      var result = data.replace(/###.*/g, "### " + config.name);
       fs.writeFile(readmeFile, result, 'utf8', function (err) {
          if (err) return console.log(err);
       });

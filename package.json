@@ -5,9 +5,9 @@
   "main": "public/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "js": "node_modules/budo/bin/cmd.js src/scripts/build/browser.js --dir public -l --css",
+    "js": "node_modules/budo/bin/cmd.js build/browser.js --dir public -l --css",
     "css": "node_modules/catw/bin/cmd.js src/styles/*.css -o public/app.css -v",
-    "print": "node src/scripts/build/print.js",
+    "dist": "node build/server.js",
     "start": "npm run css & npm run js"
   },
   "author": "Giulian Drimba <giuliandrimba@gmail.com>",
